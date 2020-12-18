@@ -1,5 +1,6 @@
 (ns clojureize-keys.core
   (:require
+    [clojure.spec.alpha :as s]
     [clojure.string :as string]
     [clojure.walk :refer [postwalk]]))
 
@@ -25,3 +26,6 @@
                               [(key-fn k) v]))
                       x))]
     (postwalk transform m)))
+(s/fdef clojureize-keys
+        :args (s/cat :m map?)
+        :ret map?)
