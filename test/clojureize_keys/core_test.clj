@@ -22,11 +22,11 @@
       (stest/summarize-results (stest/check  `keyword-or-str))))
   (testing "performance"
     (let [sample-count 1000
-          avg-exec-target-ns 1500
+          avg-exec-target-ns 2000 ;; 2ms
           _pregen (doall (take sample-count rand-str-seq))
           [duration-ns _] (criterium/time-body (doseq [s (take sample-count rand-str-seq)]
                                                  (keyword-or-str s))) ]
-      (is (<= (/ duration-ns sample-count) 
+      (is (<= (float (/ duration-ns sample-count))
              avg-exec-target-ns)))))
 
 ;; TODO:
@@ -43,11 +43,11 @@
       (stest/summarize-results (stest/check  `clojureize-keys))))
   (testing "performance"
     (let [sample-count 1000
-          avg-exec-target-ns 42000
+          avg-exec-target-ns 50000 ;; 50 ms
           _pregen (doall (take sample-count rand-map-seq))
           [duration-ns _] (criterium/time-body (doseq [m (take sample-count rand-map-seq)]
                                                  (clojureize-keys m))) ]
-      (is (<= (float (/ duration-ns sample-count)) 
+      (is (<= (float (/ duration-ns sample-count))
              avg-exec-target-ns)))))
 
 (comment
