@@ -1,5 +1,7 @@
 !!! This is a lossy one directional conversion!
 
+[![Build Status](https://travis-ci.com/Velrok/clojureize-keys.svg?branch=main)](https://travis-ci.com/Velrok/clojureize-keys)
+
 # clojureize-keys
 Utility fn to convert map keys to be kebab-case keyword where possible.
 
